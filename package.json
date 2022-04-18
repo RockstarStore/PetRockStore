@@ -1,0 +1,70 @@
+{
+  "name": "petrockstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "NODE_ENV=production node server/server.ts",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development webpack serve --open & nodemon server/server.ts",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RockstarStore/PetRockStore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RockstarStore/PetRockStore/issues"
+  },
+  "homepage": "https://github.com/RockstarStore/PetRockStore#readme",
+  "dependencies": {
+    "@types/webpack": "^4.4.34",
+    "@types/webpack-dev-server": "^4.1.0",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "express": "^4.17.3",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^8.0.0",
+    "react-router-dom": "^6.2.2",
+    "redux": "^4.1.2",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "ts-node": "^10.7.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@testing-library/react": "^13.1.1",
+    "@types/node": "^17.0.25",
+    "@types/react": "^16.14.25",
+    "@types/react-dom": "^16.9.14",
+    "@types/react-hot-loader": "^4.1.1",
+    "@types/react-table": "^7.7.10",
+    "babel-loader": "^8.2.4",
+    "babel-plugin-import": "^1.13.5",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "jest": "^27.5.1",
+    "redux-devtools-extension": "^2.13.9",
+    "ts-jest": "^27.1.4",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3"
+  }
+}
