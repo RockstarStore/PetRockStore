@@ -1,1 +1,1 @@
-# PetRockStore
+# RockStar: The Pet Rock Store
