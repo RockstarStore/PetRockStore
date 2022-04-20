@@ -48,7 +48,7 @@ export default function (): JSX.Element {
               Birth place: {birth_place}
             </p>
           </div>
-          <div>
+          <div style={{ marginRight: '10px' }}>
             <p>Price: {total}</p>
           </div>
         </div>
@@ -87,7 +87,9 @@ export default function (): JSX.Element {
               use effectively.
             </p> */}
             <p>
-              {/* <span className="card-title">Subtotal: {subtotal()}</span> */}
+              <span className="card-title">
+                Subtotal: {subtotal(cartItems)}
+              </span>
             </p>
           </div>
           <div className="card-action">
