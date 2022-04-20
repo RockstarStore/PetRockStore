@@ -24,7 +24,7 @@ export default function (): JSX.Element {
       method: 'POST',
       headers: { 'Content-Type': 'Application/JSON' },
       // body: JSON.stringify({ rock_id: productInfo, user_id: 2 }),
-      body: JSON.stringify({ rock_id: 3, user_id: 2 }),
+      // body: JSON.stringify({ rock_id: 3, user_id: 2 }),
     };
     fetch('/shop', optionsObject);
   };
