@@ -1,23 +1,62 @@
 import React, { useEffect, useState } from 'react';
+import { Rocks } from '../types';
 
 export default function (): JSX.Element {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
   // make call to database for item list
+  // set typing for rocks array...somehow
+  const [rocks, setRocks] = useState<Rocks>([]);
 
-  const products: any = [];
-  for (let i = 0; i < 30; i++) {
+  useEffect(() => {
+    console.log('In useEffect');
+    const fetchRocks = async () => {
+      const res = await fetch('/rocks');
+      const rocksArr = await res.json();
+      console.log(rocksArr);
+      setRocks(rocksArr);
+    };
+    fetchRocks().catch(console.error);
+    console.log('rocksinuseeffect: ', rocks);
+  }, []);
+
+  const addCart = (productInfo: any) => {
+    const optionsObject = {
+      method: 'POST',
+      headers: { 'Content-Type': 'Application/JSON' },
+      // body: JSON.stringify({ rock_id: productInfo, user_id: 2 }),
+      body: JSON.stringify({ rock_id: 3, user_id: 2 }),
+    };
+    fetch('/shop', optionsObject);
+  };
+
+  const products: JSX.Element[] = [];
+  for (let i = 0; i < rocks.length; i++) {
     products.push(
       <div className="col s12 m6 l4">
         <div className="z-depth-3 card">
           <div className="card-image">
-            <img src="https://d3mvlb3hz2g78.cloudfront.net/wp-content/uploads/2016/01/thumb_720_450_f_28.jpg"></img>
-            <span className="card-title">Product Title {i}</span>
+            <img className="rock-image" src={rocks[i].image} />
+            <span className="card-title blue-grey ">{rocks[i].name}</span>
           </div>
-          <div className="card-content">
-            <p>Product price and short description</p>
+          <div style={{ height: '150px' }} className="card-content">
+            <p>{rocks[i].description} </p>
+            <div>{rocks[i].price}</div>
           </div>
           <div className="card-action">
-            <a className="waves-effect waves-light btn-small">Add to Cart</a>
+            <a
+              className="waves-effect waves-light btn-small"
+              id={`${rocks[i].id}`}
+              onClick={(e) => {
+                // e.target && addCart(Number(e.target));
+
+                addCart(e);
+                console.log('e.target: ', e.target);
+                // console.log('e.target: ', e.target.getAttribute('id'));
+                console.log(e);
+              }}
+            >
+              Add to Cart
+            </a>
             <a className="waves-effect waves-light btn-small">More Info</a>
           </div>
         </div>
@@ -25,13 +64,15 @@ export default function (): JSX.Element {
     );
   }
 
-  const handlePageClick = (event: any) => {
+  const handlePageClick = (event: React.MouseEvent) => {
     const oldPage = page;
-    let newPage = event.target.innerText;
-    console.log(newPage);
-    if (newPage === 'chevron_right') newPage = oldPage + 1;
-    if (newPage === 'chevron_left') newPage = oldPage - 1;
-    newPage = parseInt(newPage);
+    const pageText: string = (event.target as HTMLElement).innerText;
+
+    let newPage: number;
+    if (pageText === 'chevron_right') newPage = oldPage + 1;
+    else if (pageText === 'chevron_left') newPage = oldPage - 1;
+    else newPage = parseInt(pageText);
+
     if (newPage === 5) {
       console.log('hi');
       document
@@ -62,9 +103,10 @@ export default function (): JSX.Element {
 
   return (
     <>
+      {/* <div>{rocks}</div> */}
       <div className="parallax-container">
         <div className="parallax">
-          <img src="https://www.mcgill.ca/oss/files/oss/styles/hd/public/pebble-3215317_1920_1.jpeg?itok=dJy0SPKE&timestamp=1601650822"></img>
+          <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2019/06/30-rock-unresolved-ten-storylines-feature-image.jpg"></img>
         </div>
       </div>
       <div className="row">{products.slice((page - 1) * 6, page * 6)}</div>

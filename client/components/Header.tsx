@@ -7,7 +7,7 @@ export default function (): JSX.Element {
       <nav>
         <div className="nav-wrapper">
           <NavLink className="brand-logo center" to="">
-            RockStar
+            RockStar &#129704;&#11088;
           </NavLink>
           <ul id="nav-mobile" className="right">
             <li>
@@ -16,7 +16,7 @@ export default function (): JSX.Element {
               </NavLink>
             </li>
             <li>
-              <NavLink to="profile">Profile</NavLink>
+              <NavLink to="login">Log In</NavLink>
             </li>
           </ul>
         </div>

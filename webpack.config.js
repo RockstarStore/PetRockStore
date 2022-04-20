@@ -16,7 +16,9 @@ module.exports = {
       publicPath: '/',
     },
     proxy: {
-      // '/cart': 'http://localhost:3000',
+      '/rocks': 'http://localhost:3000',
+      '/shop/**': 'http://localhost:3000',
+      '/users/**': 'http://localhost:3000',
     },
     port: 8080,
     compress: true,
