@@ -17,14 +17,19 @@ import App from './components/App';
 import ProductGrid from './components/ProductGrid';
 import Cart from './components/Cart';
 import Profile from './components/Profile';
+import Login from './components/Login';
+
 import store from './store';
-// import GoogleLoginHook from '';
-// import GoogleLogoutHook from '';
+import GoogleLoginHook from './GoogleLoginHook';
+import GoogleLogoutHook from './GoogleLogoutHook';
+
+// use useContext instead grab context from Login
+// const [ loggedIn ] = useState('');
+// document.getElementById('client_id').content = process.env.CLIENT_ID;
 
 render(
-  /*if not logged in, render this */
-  /* <GoogleLoginHook />
-  <GoogleLogoutHook /> */
+  // <GoogleLoginHook />
+  // <GoogleLogoutHook />
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
@@ -32,6 +37,7 @@ render(
           <Route index element={<ProductGrid />} />
           <Route path="cart" element={<Cart />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
