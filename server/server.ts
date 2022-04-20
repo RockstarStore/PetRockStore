@@ -17,11 +17,15 @@ app.use("/shop", shopRouter);
 // get rocks
 app.use("/rocks", rockRouter);
 
+app.get('/*', (req: any, res: any) => {
+  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
 // catch-all route handler for any requests to an unknown route
 app.use("*", (req: any, res: any) => {
   console.log("404 Error Caught Here");
   res.status(404).send("This is not the page you're looking for...");
 });
+
 
 // Global error handling middleware
 app.use((err: any, req: any, res: any, next: any) => {
