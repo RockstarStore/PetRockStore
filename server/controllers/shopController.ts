@@ -4,9 +4,15 @@ export {};
 module.exports = {
   async getCart(req: any, res: any, next: any) {
     try {
-      const { id } = req.params;
-      const getQuery: string = "SELECT * FROM cart c INNER JOIN users u ON u.id = c.user_id WHERE user_id = $1";
-      const result = await db.query(getQuery, [id]);
+      const { userID } = req.params;
+      const getQuery: string = `SELECT COUNT(r.id),
+                                r.*, 
+                                r.price*r.count AS total 
+                                FROM cart c 
+                                INNER JOIN users u ON u.id = c.user_id 
+                                INNER JOIN rock r ON c.rock_id = r.id 
+                                WHERE user_id = $1 GROUP BY r.id`;
+      const result = await db.query(getQuery, [userID]);
       res.locals.getCart = result.rows.length ? result.rows : null;
       return next();
     } catch (err) {
@@ -36,9 +42,9 @@ module.exports = {
   },
   async deleteCart(req: any, res: any, next: any) {
     try {
-      const { id }  = req.params;
+      const { cartID }  = req.params;
       const deleteQuery: string = "DELETE FROM cart WHERE id = $1 RETURNING *";
-      const result = await db.query(deleteQuery, [id])
+      const result = await db.query(deleteQuery, [cartID])
       res.locals.deleted = result.rows;
       return next();
 

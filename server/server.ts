@@ -15,7 +15,7 @@ app.use("/users", userRouter);
 //shopping cart router
 app.use("/shop", shopRouter);
 // get rocks
-app.use("/items", rockRouter);
+app.use("/rocks", rockRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.use("*", (req: any, res: any) => {

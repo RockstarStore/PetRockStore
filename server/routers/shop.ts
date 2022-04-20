@@ -3,7 +3,7 @@ const router = express.Router();
 const shopController = require("../controllers/shopController");
 
 // Get user's cart
-router.get('/:id', shopController.getCart, (req: any, res: any) => {
+router.get('/:userID', shopController.getCart, (req: any, res: any) => {
   res.status(200).json(res.locals.getCart);
 })
 // Add to cart
@@ -16,7 +16,7 @@ router.post(
 
 //remove from cart
 router.delete(
-  "/:id",
+  "/:cartID",
   shopController.deleteCart,
   (req: any, res: any) => {
     res.status(200).json(res.locals.deleted)
