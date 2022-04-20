@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/RockstarStore/PetRockStore#readme",
   "dependencies": {
+    "@types/pg": "^8.6.5",
     "@types/webpack": "^4.4.34",
     "@types/webpack-dev-server": "^4.1.0",
     "concurrently": "^7.0.0",
