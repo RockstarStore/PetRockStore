@@ -1,4 +1,4 @@
-const db = require("../models/userModel");
+const db = require('../models/userModel');
 
 export {};
 module.exports = {
@@ -17,42 +17,45 @@ module.exports = {
       return next();
     } catch (err) {
       return next({
-        log: "getCart controller had an error",
+        log: 'getCart controller had an error',
         status: 418,
-        message: { err: "An error occurred when getting cart" },
+        message: { err: 'An error occurred when getting cart' },
       });
     }
   },
   async addCart(req: any, res: any, next: any) {
     try {
       const { rock_id, user_id } = req.body;
-      const addQuery: string = "INSERT INTO cart (rock_id, user_id) VALUES ($1, $2) RETURNING *";
-      const result = await db.query(addQuery, [rock_id, user_id])
-      // res.locals.addCart = result.rows.length ? true : false;
-      res.locals.addCart = result.rows;
-      return next();
+      const addQuery: string =
+        'INSERT INTO cart (rock_id, user_id) VALUES ($1, $2) RETURNING *';
+      const result = await db.query(addQuery, [rock_id, 2]);
+      res.locals.addCart = result.rows.length ? result.rows : null;
+      console.log('added: ', result.rows);
 
+      // res.locals.addCart = result.rows;
+      return next();
     } catch (err) {
       return next({
-        log: "addCart controller had an error",
+        log: 'addCart controller had an error',
         status: 418,
-        message: { err: "An error occurred when adding an item a cart" },
+        message: { err: 'An error occurred when adding an item a cart' },
       });
     }
   },
   async deleteCart(req: any, res: any, next: any) {
     try {
-      const { cartID }  = req.params;
-      const deleteQuery: string = "DELETE FROM cart WHERE id = $1 RETURNING *";
-      const result = await db.query(deleteQuery, [cartID])
+      const { cartID } = req.params;
+      const deleteQuery: string = 'DELETE FROM cart WHERE id = $1 RETURNING *';
+      const result = await db.query(deleteQuery, [cartID]);
       res.locals.deleted = result.rows;
       return next();
-
     } catch (err) {
       return next({
-        log: "deleteCart controller had an error",
+        log: 'deleteCart controller had an error',
         status: 418,
-        message: { err: "An error occurred when removing an item from the cart" },
+        message: {
+          err: 'An error occurred when removing an item from the cart',
+        },
       });
     }
   },

@@ -11,11 +11,16 @@
 
 import * as types from '../constants/actionTypes';
 
-const initialState = {};
+const initialState = {
+  userID: null,
+};
 
 const shopReducer = (state = initialState, action: any) => {
+  const newState = { ...state };
   switch (action.type) {
-    case types.EXAMPLE: {
+    case types.SET_USER: {
+      newState.userID = action.payload.userID;
+      return newState;
     }
 
     default: {

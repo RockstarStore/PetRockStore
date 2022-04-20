@@ -28,3 +28,26 @@ body::-webkit-scrollbar-thumb {
 .row {
   padding: 20px;
 }
+
+#retry-login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
+}
+
+.rock-image {
+  height: 280px;
+  object-fit: cover;
+}
+
+.circle {
+  height: 65px !important;
+  width: 65px !important;
+  object-fit: cover;
+}
+
+.title {
+  font-weight: bold;
+}

@@ -1,19 +1,33 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const userController = require("../controllers/userController");
+const userController = require('../controllers/userController');
 
 // Create user
-router.post("/signup", userController.createUser, (req: any, res: any) => {
-  res.status(200).json(res.locals.createUser);
-});
+router.post(
+  '/signup',
+  userController.checkUsername,
+  userController.createUser,
+  (req: any, res: any) => {
+    res
+      .status(200)
+      .json(
+        res.locals.userExists
+          ? res.locals.username
+          : { err: 'user already exists' }
+      );
+  }
+);
 
 // Verify user
 
-router.post("/verify", userController.verifyUser, (req: any, res: any) => {
-  res.locals.verified
-    ? // TODO: fix redirect after page creation
-      res.send("user exists")
-    : res.send("user does not exist");
+router.post('/verify', userController.verifyUser, (req: any, res: any) => {
+  res
+    .status(200)
+    .json(
+      res.locals.verified
+        ? res.locals.username
+        : { err: 'incorrect credentials' }
+    );
 });
 
 export {};
